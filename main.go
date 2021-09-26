@@ -36,8 +36,8 @@ func init() {
 
 type Event struct {
 	ToAddress string `json:"ToAddress"`
-	Subject string `json:"Subject"`
-	Body string `json:"Body"`
+	Subject   string `json:"Subject"`
+	Body      string `json:"Body"`
 }
 
 func handleRequest(ctx context.Context, event Event) (err error) {
@@ -59,6 +59,13 @@ func handleRequest(ctx context.Context, event Event) (err error) {
 	}
 
 	_, err = clientGlobal.ProcessCommonRequest(request)
+	if err != nil {
+		_, err = clientGlobal.ProcessCommonRequest(request)
+	}
+	if err != nil {
+		_, err = clientGlobal.ProcessCommonRequest(request)
+	}
+
 	return
 }
 
